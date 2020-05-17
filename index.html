@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Stay Inside</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+  <main>
+<!--     <video autoplay muted loop id="video">
+      <source src="img/bg.mp4" type="video/mp4">
+    </video> -->
+<!--     <div id="text"></div> -->
+  </main>
+</body>
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+  <script type="module" src="effect.js"></script> -->
+  <script src="blotter.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/fliesMaterial.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/liquidDistortMaterial.min.js"> </script>
+  <script>
+  const text = new Blotter.Text("stay inside", {
+    family: 'cooper black',
+    size: 226,
+    fill: "#fff",
+    paddingLeft: 100,
+    paddingRight: 120,
+    paddingTop: 200,
+    paddingBottom: 280,
+})
+
+  // const material = new Blotter.FliesMaterial();
+  //   material.uniforms.uPointCellWidth.value = .01;
+  //   material.uniforms.uPointRadius.value = .5;
+  //   material.uniforms.uSpeed.value = 2;
+
+    const material = new Blotter.LiquidDistortMaterial();
+    material.uniforms.uVolatility.value = 4;
+    material.uniforms.uSeed.value = 2;
+    material.uniforms.uSpeed.value = .2;
+
+
+  const blotter = new Blotter(material, {
+      texts: text
+  })
+
+  const scope = blotter.forText(text);
+
+  // let elem = document.getElementById('text');
+  // scope.appendTo(elem);
+  scope.appendTo(document.body);
+
+  document.onmousemove = expand;
+  function expand(event) {
+    // material.uniforms.uVolatility.value = (event.clientX * .00008);
+    console.log(event)
+    material.uniforms.uVolatility.value = (event.screenX * .0003) + (event.screenY * .00018) ;
+    // material.uniforms.uSeed.value = (event.clientY * .0004) + (event.clientX * .0004);
+  }
+  </script>
+</html>
+
+
+
+
+
